@@ -1,10 +1,20 @@
 import { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import flagNeutral from "../assets/neutral.png";
+import corazonImg from "../assets/corazon.png";
 import ModalSuccess from "./ModalSuccess";
 
 // https://www.banderas-mundo.es/descargar/api
 
+const css = {
+  image: {
+    width: "120px",
+    height: "120px",
+    borderRadius: "15%",
+    objectFit: "cover",
+  },
+};
+const countries = ["ar", "ie", "cl", "us", "hu", "bf", "cy", "de"];
 export default function LevelOne() {
   const [flag, setFlag] = useState({ flag1: "vacio", flag2: "vacio" });
   const [lifes, setLifes] = useState(5);
@@ -19,9 +29,17 @@ export default function LevelOne() {
       (flag.flag1 !== "us" || flag.flag2 !== "vacio") &&
       (flag.flag1 !== "cl" || flag.flag2 !== "vacio") &&
       (flag.flag1 !== "ie" || flag.flag2 !== "vacio") &&
+      (flag.flag1 !== "hu" || flag.flag2 !== "vacio") &&
+      (flag.flag1 !== "bf" || flag.flag2 !== "vacio") &&
+      (flag.flag1 !== "cy" || flag.flag2 !== "vacio") &&
+      (flag.flag1 !== "de" || flag.flag2 !== "vacio") &&
       (flag.flag1 !== "vacio" || flag.flag2 !== "ar") &&
       (flag.flag1 !== "vacio" || flag.flag2 !== "us") &&
       (flag.flag1 !== "vacio" || flag.flag2 !== "cl") &&
+      (flag.flag1 !== "vacio" || flag.flag2 !== "hu") &&
+      (flag.flag1 !== "vacio" || flag.flag2 !== "bf") &&
+      (flag.flag1 !== "vacio" || flag.flag2 !== "cy") &&
+      (flag.flag1 !== "vacio" || flag.flag2 !== "de") &&
       (flag.flag1 !== "vacio" || flag.flag2 !== "ie")
     ) {
       setLifes(lifes - 1);
@@ -61,19 +79,22 @@ export default function LevelOne() {
   };
 
   const flagImg = (country) => {
-    return `https://flagcdn.com/108x81/${country}.png`;
+    // return `https://flagcdn.com/108x81/${country}.png`;
+    return `https://raw.githubusercontent.com/swantzter/square-flags/master/png/1x1/512/${country}.png`;
   };
 
   const lifesToSimbol =
     lifes === 5
-      ? "❤❤❤❤❤"
+      ? ["❤", "❤", "❤", "❤", "❤"]
       : lifes === 4
-      ? "❤❤❤❤"
+      ? ["❤", "❤", "❤", "❤"]
       : lifes === 3
-      ? "❤❤❤"
+      ? ["❤", "❤", "❤"]
       : lifes === 2
-      ? "❤❤"
-      : lifes === 1 && "❤";
+      ? ["❤", "❤"]
+      : lifes === 1
+      ? ["❤"]
+      : lifes === 0 && [];
 
   const clearFlag1 = () => {
     flag.flag1 = "vacio";
@@ -83,10 +104,21 @@ export default function LevelOne() {
     flag.flag2 = "vacio";
     setFlag({ ...flag });
   };
+  const clearBothFlags = () => {
+    flag.flag1 = "vacio";
+    flag.flag2 = "vacio";
+    setFlag({ ...flag });
+  }
   return (
     <Box className="App">
       <Box sx={{ position: "absolute", letterSpacing: "10px" }}>
-        {lifesToSimbol}
+        {lifesToSimbol?.map(() => (
+          <Box
+            component="img"
+            src={corazonImg}
+            sx={{ width: "100px", mr: "10px" }}
+          />
+        ))}
       </Box>
       <Box
         sx={{
@@ -100,6 +132,7 @@ export default function LevelOne() {
           <Box
             component="img"
             src={flag.flag1 === "vacio" ? flagNeutral : flagImg(flag.flag1)}
+            sx={css.image}
           />
           <Box onClick={clearFlag1}>X</Box>
         </Box>
@@ -107,23 +140,32 @@ export default function LevelOne() {
           <Box
             component="img"
             src={flag.flag2 === "vacio" ? flagNeutral : flagImg(flag.flag2)}
+            sx={css.image}
           />
           <Box onClick={clearFlag2}>X</Box>
         </Box>
+        <Button onClick={clearBothFlags}>Borrar todo</Button>
       </Box>
-      <Box>
-        <Box value="ar" onClick={() => handleBandera("ar")}>
-          <Box component="img" src={flagImg("ar")} />
-        </Box>
-        <Box value="ie" onClick={() => handleBandera("ie")}>
-          <Box component="img" src={flagImg("ie")} />
-        </Box>
-        <Box value="cl" onClick={() => handleBandera("cl")}>
-          <Box component="img" src={flagImg("cl")} />
-        </Box>
-        <Box value="us" onClick={() => handleBandera("us")}>
-          <Box component="img" src={flagImg("us")} />
-        </Box>
+
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          justifyItems: "center",
+          alignItems: "center",
+          gap: "20px",
+          m: "0 300px",
+        }}
+      >
+        {countries.map((code) => (
+          <Box
+            component="img"
+            src={flagImg(code)}
+            alt="Argentina"
+            sx={css.image}
+            onClick={() => handleBandera(code)}
+          />
+        ))}
       </Box>
       <ModalSuccess open={open} />
     </Box>
