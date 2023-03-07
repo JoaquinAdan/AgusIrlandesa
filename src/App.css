@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 .App {
   font-family: sans-serif;
   text-align: center;
+  font-family: 'Lilita One', cursive;
 }
 .loading {
   animation: rotation 2.5s infinite linear;

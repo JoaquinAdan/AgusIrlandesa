@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import flagNeutral from "../assets/neutral.png";
 import corazonImg from "../assets/corazon.png";
 import ModalSuccess from "./ModalSuccess";
@@ -8,11 +8,47 @@ import ModalSuccess from "./ModalSuccess";
 
 const css = {
   image: {
-    width: "120px",
-    height: "120px",
+    width: "69px",
+    height: "69px",
     borderRadius: "15%",
     objectFit: "cover",
   },
+  background: {
+    background:
+      "radial-gradient(73.29% 73.29% at 50% 26.71%, #A659FE 0%, #6F53FD 100%)",
+    height: "100vh",
+  },
+  flagContainer: {
+    background: "#fff",
+    p: "20px",
+    borderRadius: "21px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "20px",
+    borderBottom: "5px solid  #D1D8FF",
+  },
+  title: {
+    color: "#fff",
+    fontSize: "18px",
+  },
+  buttonContainer: {
+    borderBottom: "4px solid  #d9d8d9",
+    borderRadius: "8px",
+    p: "3px"
+  },
+  buttonBackground: {
+    borderRadius: "8px",
+    p: "5px 10px",
+    borderBottom: "5px solid #08B9FF",
+    background:"linear-gradient(50deg, #70e0fd, #70e0fd 60%, #4CDAFE 60%, #4CDAFE)",
+    width: "113px"
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: "16px"
+  }
 };
 const countries = ["ar", "ie", "cl", "us", "hu", "bf", "cy", "de"];
 export default function LevelOne() {
@@ -108,9 +144,9 @@ export default function LevelOne() {
     flag.flag1 = "vacio";
     flag.flag2 = "vacio";
     setFlag({ ...flag });
-  }
+  };
   return (
-    <Box className="App">
+    <Box sx={css.background}>
       <Box sx={{ position: "absolute", letterSpacing: "10px" }}>
         {lifesToSimbol?.map(() => (
           <Box
@@ -154,17 +190,34 @@ export default function LevelOne() {
           justifyItems: "center",
           alignItems: "center",
           gap: "20px",
-          m: "0 300px",
+          m: "0 150px",
         }}
       >
         {countries.map((code) => (
-          <Box
-            component="img"
-            src={flagImg(code)}
-            alt="Argentina"
-            sx={css.image}
-            onClick={() => handleBandera(code)}
-          />
+          <Box sx={css.flagContainer}>
+            <Box
+              sx={{
+                background: "#D0103A",
+                borderRadius: "25px",
+                textAlign: "center",
+                width: "214px",
+              }}
+            >
+              <Typography sx={css.title}>{code}</Typography>
+            </Box>
+            <Box
+              component="img"
+              src={flagImg(code)}
+              alt="Argentina"
+              sx={css.image}
+              onClick={() => handleBandera(code)}
+            />
+            <Box sx={css.buttonContainer}>
+              <Box sx={css.buttonBackground}>
+                <Typography sx={css.buttonText}>SELECCIONAR</Typography>
+              </Box>
+            </Box>
+          </Box>
         ))}
       </Box>
       <ModalSuccess open={open} />
