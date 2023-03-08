@@ -147,7 +147,7 @@ export default function LevelOne() {
             key={lifesToSimbol[i]}
             component="img"
             src={corazonImg}
-            sx={{ width: "100px", mr: "10px" }}
+            sx={{ width: "80px", mr: "10px" }}
           />
         ))}
       </Box>
@@ -155,7 +155,7 @@ export default function LevelOne() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "20px",
+          gap: "15%",
           mb: "20px",
         }}
       >
@@ -187,13 +187,7 @@ export default function LevelOne() {
           mb: "60px",
         }}
       >
-        <Box
-          sx={{
-            borderBottom: "4px solid  #9f2e30",
-            borderRadius: "8px",
-            p: "3px",
-          }}
-        >
+        <Box sx={{ borderBottom: "4px solid  #9f2e30", borderRadius: "8px", p: "3px" }}>
           <CustomButton onClick={clearBothFlags} variant="eliminar">
             Borrar todo
           </CustomButton>
