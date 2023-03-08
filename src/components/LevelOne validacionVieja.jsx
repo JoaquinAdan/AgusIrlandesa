@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
+import flagNeutral from "../assets/neutral.png";
 import corazonImg from "../assets/corazon.png";
 import ModalSuccess from "./ModalSuccess";
 import FlagContainer from "./FlagContainer";
-import flagNeutral from "../assets/neutral.png";
 
 // https://www.banderas-mundo.es/descargar/api
 
@@ -40,18 +40,40 @@ const countries = [
 ];
 
 export default function LevelOne() {
-  const [flag, setFlag] = useState({
-    flag1: "vacio",
-    flag1Color: "",
-    flag1Name: "",
-    flag2: "vacio",
-    flag2Color: "",
-    flag2Name: "",
-  });
+  const [flag, setFlag] = useState({ flag1: "vacio", flag2: "vacio" });
   const [lifes, setLifes] = useState(5);
   const [open, setOpen] = useState(false);
-console.log(flag)
+
   useEffect(() => {
+    // if (
+    //   (flag.flag1 !== "ar" || flag.flag2 !== "ie") &&
+    //   (flag.flag1 !== "ie" || flag.flag2 !== "ar") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "ar" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "us" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "cl" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "ie" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "hu" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "bf" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "cy" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "de" || flag.flag2 !== "vacio") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "ar") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "us") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "cl") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "hu") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "bf") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "cy") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "de") &&
+    //   (flag.flag1 !== "vacio" || flag.flag2 !== "ie")
+    // ) {
+    //   setLifes(lifes - 1);
+    // }
+    // if (
+    //   (flag.flag1 === "ar" && flag.flag2 === "ie") ||
+    //   (flag.flag2 === "ar" && flag.flag1 === "ie")
+    // ) {
+    //   setOpen(true);
+    // }
     const flagsArray = ["ar", "ie"];
     if (flag.flag1 !== "vacio" || flag.flag2 !== "vacio") {
       if (flagsArray.includes(flag.flag1) && flagsArray.includes(flag.flag2)) {
@@ -71,25 +93,19 @@ console.log(flag)
     lifes === 0 && alert("jaja perdiste");
   }, [lifes]);
 
-  const handleBandera = (code, name, color) => {
+  const handleBandera = (country) => {
     if (flag.flag1 === "vacio" && flag.flag2 === "vacio") {
-      if (flag.flag1 === "vacio" && flag.flag2 !== code) {
-        flag.flag1 = code;
-        flag.flag1Name = name;
-        flag.flag1Color = color;
+      if (flag.flag1 === "vacio" && flag.flag2 !== country) {
+        flag.flag1 = country;
         setFlag({ ...flag });
       }
     } else {
-      if (flag.flag2 === "vacio" && flag.flag1 !== code) {
-        flag.flag2 = code;
-        flag.flag2Name = name;
-        flag.flag2Color = color;
+      if (flag.flag2 === "vacio" && flag.flag1 !== country) {
+        flag.flag2 = country;
         setFlag({ ...flag });
       }
-      if (flag.flag1 === "vacio" && flag.flag2 !== code) {
-        flag.flag1 = code;
-        flag.flag1Name = name;
-        flag.flag1Color = color;
+      if (flag.flag1 === "vacio" && flag.flag2 !== country) {
+        flag.flag1 = country;
         setFlag({ ...flag });
       }
     }
@@ -115,23 +131,15 @@ console.log(flag)
 
   const clearFlag1 = () => {
     flag.flag1 = "vacio";
-    flag.flag1Name = "";
-    flag.flag1Color = "";
     setFlag({ ...flag });
   };
   const clearFlag2 = () => {
     flag.flag2 = "vacio";
-    flag.flag2Name = "";
-    flag.flag2Color = "";
     setFlag({ ...flag });
   };
   const clearBothFlags = () => {
     flag.flag1 = "vacio";
-    flag.flag1Name = "";
-    flag.flag1Color = "";
     flag.flag2 = "vacio";
-    flag.flag2Name = "";
-    flag.flag2Color = "";
     setFlag({ ...flag });
   };
   return (
@@ -154,47 +162,30 @@ console.log(flag)
           mb: "20px",
         }}
       >
-        {/* <Box sx={{ fontSize: "20px" }}>
+        <Box sx={{ fontSize: "20px" }}>
           <Box
             component="img"
             src={flag.flag1 === "vacio" ? flagNeutral : flagImg(flag.flag1)}
             sx={css.image}
           />
           <Box onClick={clearFlag1}>X</Box>
-        </Box> */}
-        <FlagContainer
-            flagColor={flag.flag1Color}
-            flagName={flag.flag1Name}
-            flagToShow={flag.flag1 === "vacio" ? flagNeutral : flag.flag1}
-            flagImg={flagImg}
-            handleBandera={handleBandera}
-          />
-          <Box onClick={clearFlag1}>X</Box>
-          <FlagContainer
-            flagColor={flag.flag2Color}
-            flagName={flag.flag2Name}
-            flagToShow={flag.flag2 === "vacio" ? flagNeutral : flag.flag2}
-            flagImg={flagImg}
-            handleBandera={handleBandera}
-          />
-          <Box onClick={clearFlag2}>X</Box>
-        {/* <Box sx={{ fontSize: "20px" }}>
+        </Box>
+        <Box sx={{ fontSize: "20px" }}>
           <Box
             component="img"
             src={flag.flag2 === "vacio" ? flagNeutral : flagImg(flag.flag2)}
             sx={css.image}
           />
           <Box onClick={clearFlag2}>X</Box>
-        </Box> */}
-      </Box>
+        </Box>
         <Button onClick={clearBothFlags}>Borrar todo</Button>
+      </Box>
 
       <Box sx={css.flagsContainer}>
         {countries.map((country) => (
           <FlagContainer
             key={country.code}
-            flagColor={country.color}
-            flagName={country.country}
+            country={country}
             flagToShow={country.code}
             flagImg={flagImg}
             handleBandera={handleBandera}
