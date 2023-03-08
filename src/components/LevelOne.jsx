@@ -4,6 +4,7 @@ import corazonImg from "../assets/corazon.png";
 import ModalSuccess from "./ModalSuccess";
 import FlagContainer from "./FlagContainer";
 import flagNeutral from "../assets/neutral.png";
+import CustomButton from "./CustomButton";
 
 // https://www.banderas-mundo.es/descargar/api
 
@@ -18,6 +19,9 @@ const css = {
     background:
       "radial-gradient(73.29% 73.29% at 50% 26.71%, #A659FE 0%, #6F53FD 100%)",
     height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   flagsContainer: {
     display: "grid",
@@ -50,13 +54,14 @@ export default function LevelOne() {
   });
   const [lifes, setLifes] = useState(5);
   const [open, setOpen] = useState(false);
-console.log(flag)
+  console.log(flag);
   useEffect(() => {
     const flagsArray = ["ar", "ie"];
     if (flag.flag1 !== "vacio" || flag.flag2 !== "vacio") {
       if (flagsArray.includes(flag.flag1) && flagsArray.includes(flag.flag2)) {
         setOpen(true);
       } else if (flag.flag1 === "vacio" || flag.flag2 === "vacio") {
+        // console.log("No hago nada")
       } else {
         setLifes(lifes - 1);
       }
@@ -64,11 +69,11 @@ console.log(flag)
   }, [flag]);
 
   useEffect(() => {
-    lifes === 4 && alert(":( Te quedan 4 vidas");
-    lifes === 3 && alert(":( Te quedan 3 vidas");
-    lifes === 2 && alert(":( Te quedan 2 vidas");
-    lifes === 1 && alert(":( Te quedan 1 vidas");
-    lifes === 0 && alert("jaja perdiste");
+    lifes === 4 && console.log(":( Te quedan 4 vidas");
+    lifes === 3 && console.log(":( Te quedan 3 vidas");
+    lifes === 2 && console.log(":( Te quedan 2 vidas");
+    lifes === 1 && console.log(":( Te quedan 1 vidas");
+    lifes === 0 && console.log("jaja perdiste");
   }, [lifes]);
 
   const handleBandera = (code, name, color) => {
@@ -136,7 +141,7 @@ console.log(flag)
   };
   return (
     <Box sx={css.background}>
-      <Box sx={{ position: "absolute", letterSpacing: "10px" }}>
+      <Box sx={{ position: "absolute", letterSpacing: "10px", top: 0 }}>
         {lifesToSimbol?.map((lifes, i) => (
           <Box
             key={lifesToSimbol[i]}
@@ -154,41 +159,46 @@ console.log(flag)
           mb: "20px",
         }}
       >
-        {/* <Box sx={{ fontSize: "20px" }}>
-          <Box
-            component="img"
-            src={flag.flag1 === "vacio" ? flagNeutral : flagImg(flag.flag1)}
-            sx={css.image}
-          />
-          <Box onClick={clearFlag1}>X</Box>
-        </Box> */}
         <FlagContainer
-            flagColor={flag.flag1Color}
-            flagName={flag.flag1Name}
-            flagToShow={flag.flag1 === "vacio" ? flagNeutral : flag.flag1}
-            flagImg={flagImg}
-            handleBandera={handleBandera}
-          />
-          <Box onClick={clearFlag1}>X</Box>
-          <FlagContainer
-            flagColor={flag.flag2Color}
-            flagName={flag.flag2Name}
-            flagToShow={flag.flag2 === "vacio" ? flagNeutral : flag.flag2}
-            flagImg={flagImg}
-            handleBandera={handleBandera}
-          />
-          <Box onClick={clearFlag2}>X</Box>
-        {/* <Box sx={{ fontSize: "20px" }}>
-          <Box
-            component="img"
-            src={flag.flag2 === "vacio" ? flagNeutral : flagImg(flag.flag2)}
-            sx={css.image}
-          />
-          <Box onClick={clearFlag2}>X</Box>
-        </Box> */}
+          flagColor={flag.flag1Color}
+          flagName={flag.flag1Name}
+          flagToShow={flag.flag1 === "vacio" ? flagNeutral : flag.flag1}
+          flagImg={flagImg}
+          handleBandera={handleBandera}
+          variant="seleccionado"
+          clearFlag={clearFlag1}
+        />
+        <FlagContainer
+          flagColor={flag.flag2Color}
+          flagName={flag.flag2Name}
+          flagToShow={flag.flag2 === "vacio" ? flagNeutral : flag.flag2}
+          flagImg={flagImg}
+          handleBandera={handleBandera}
+          variant="seleccionado"
+          clearFlag={clearFlag2}
+        />
       </Box>
-        <Button onClick={clearBothFlags}>Borrar todo</Button>
-
+      <Box
+        sx={{
+          alignSelf: "center",
+          background: "#ffffff5e",
+          p: "2.5px 2.6px",
+          borderRadius: "8px",
+          mb: "60px",
+        }}
+      >
+        <Box
+          sx={{
+            borderBottom: "4px solid  #9f2e30",
+            borderRadius: "8px",
+            p: "3px",
+          }}
+        >
+          <CustomButton onClick={clearBothFlags} variant="eliminar">
+            Borrar todo
+          </CustomButton>
+        </Box>
+      </Box>
       <Box sx={css.flagsContainer}>
         {countries.map((country) => (
           <FlagContainer
