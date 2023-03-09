@@ -98,6 +98,13 @@ const FlagContainer = ({
           {variant !== "seleccionado" && (
             <Box sx={css.buttonContainer}>
               <CustomButton
+                colorClaro="#70e0fd"
+                colorOscuro="#4CDAFE"
+                colorClaroHover="#66cde7"
+                colorOscuroHover="#3caecb"
+                borderBottom="#08B9FF"
+                borderBottomHover="#0694cc"
+                width="113px"
                 onClick={() => handleBandera(flagToShow, flagName, flagColor)}
               >
                 SELECCIONAR

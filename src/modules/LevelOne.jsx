@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import corazonImg from "../assets/corazon.png";
+import hearthIcon from "../assets/hearth.svg";
 import ModalSuccess from "./ModalSuccess";
-import FlagContainer from "./FlagContainer";
+import FlagContainer from "../components/FlagContainer";
 import flagNeutral from "../assets/neutral.png";
-import CustomButton from "./CustomButton";
+import CustomButton from "../components/CustomButton";
 
 // https://www.banderas-mundo.es/descargar/api
 
@@ -146,7 +147,7 @@ export default function LevelOne() {
           <Box
             key={lifesToSimbol[i]}
             component="img"
-            src={corazonImg}
+            src={hearthIcon}
             sx={{ width: "80px", mr: "10px" }}
           />
         ))}
@@ -187,8 +188,23 @@ export default function LevelOne() {
           mb: "60px",
         }}
       >
-        <Box sx={{ borderBottom: "4px solid  #9f2e30", borderRadius: "8px", p: "3px" }}>
-          <CustomButton onClick={clearBothFlags} variant="eliminar">
+        <Box
+          sx={{
+            borderBottom: "4px solid  #9f2e30",
+            borderRadius: "8px",
+            p: "3px",
+          }}
+        >
+          <CustomButton
+            fontSize="20px"
+            colorClaro="#ff3f3f"
+            colorOscuro="#ff0f0f"
+            colorClaroHover="#eb3636"
+            colorOscuroHover="#d90808"
+            borderBottom="#c00000"
+            borderBottomHover="#a70000"
+            onClick={clearBothFlags}
+          >
             Borrar todo
           </CustomButton>
         </Box>

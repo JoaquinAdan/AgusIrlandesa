@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
-import Buttons from "./Buttons";
-import ButtonsRight from "./ButtonsRight";
+import Buttons from "../components/Buttons";
+import ButtonsRight from "../components/ButtonsRight";
 
 const css = {
   container: { margin: "100px 300px" },
