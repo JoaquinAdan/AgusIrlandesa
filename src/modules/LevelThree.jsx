@@ -34,8 +34,8 @@ const css = {
   },
 };
 const countries = [
-  { code: "co", country: "Colombia", color: "#ffe800" },
-  { code: "cn", country: "China", color: "#de2910" },
+  { code: "ar", country: "Argentina", color: "#5984ac" },
+  { code: "ie", country: "Irlanda", color: "#ff7900" },
   { code: "cl", country: "Chile", color: "#0039a6" },
   { code: "us", country: "Estados Unidos", color: "#bd3d44" },
   { code: "hu", country: "Hungria", color: "#d43516" },
@@ -61,7 +61,7 @@ export default function LevelOne() {
     const flagsArray = ["ar", "ie"];
     if (flag.flag1 !== "vacio" || flag.flag2 !== "vacio") {
       if (flagsArray.includes(flag.flag1) && flagsArray.includes(flag.flag2)) {
-        // console.log("No hago nada")
+        setOpen(true);
       } else if (flag.flag1 === "vacio" || flag.flag2 === "vacio") {
         // console.log("No hago nada")
       } else {
@@ -75,7 +75,7 @@ export default function LevelOne() {
     lifes === 3 && setOpenLose(!openLose);
     lifes === 2 && setOpenLose(!openLose);
     lifes === 1 && setOpenLose(!openLose);
-    lifes === 0 && setOpen(true);;
+    lifes === 0 && setOpenLose(!openLose);
   }, [lifes]);
 
   const handleBandera = (code, name, color) => {

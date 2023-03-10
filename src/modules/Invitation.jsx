@@ -1,10 +1,10 @@
 import React from "react";
+import logo from "../assets/logo.png";
 import giftBox from "../assets/giftBox.svg";
 import CustomButton from "../components/CustomButton";
 import interrogationBox from "../assets/interrogationBox.svg";
-import { styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 
 const css = {
   background: {
@@ -17,7 +17,7 @@ const css = {
   },
   container: {
     width: "50%",
-    height: "60%",
+    p: "50px 0",
     background: "#FFFEFF",
     borderBottom: "10px solid  #d1d8ff",
     boxShadow: "0px 4px 0px rgba(0, 0, 0, 0.25)",
@@ -26,7 +26,6 @@ const css = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: "50px",
   },
   invitationText: {
     fontSize: "32px",
@@ -40,6 +39,7 @@ const css = {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "19px",
+    mb: "50px",
   },
 };
 
@@ -57,7 +57,7 @@ const InterrogationIcon = styled("img")({
 });
 
 const Invitation = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Box sx={css.background}>
       <Box sx={css.container}>
@@ -73,8 +73,9 @@ const Invitation = () => {
         <Typography
           sx={{ ...css.invitationText, color: "#4CDAFE", width: "433px" }}
         >
-          TE HAN INVITADO A JUGAR A IRISH AGUS
+          TE HAN INVITADO A JUGAR A
         </Typography>
+        <Box component="img" src={logo} sx={{mb: "20px"}}/>
         <Box
           sx={{
             borderBottom: "4px solid  #d9d8d9",
@@ -93,7 +94,7 @@ const Invitation = () => {
             borderBottomHover="#41a306"
             fontSize="24px"
             width="118px"
-            onClick={() => navigate("/country-fake")}
+            onClick={() => navigate("/loading-1")}
           >
             PLAY
           </CustomButton>

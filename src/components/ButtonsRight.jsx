@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
+import CustomButton from "./CustomButton";
+import ModalStatus from "../modules/ModalStatus";
 
 const css = {
   container: { margin: "100px 300px" },
@@ -7,79 +9,145 @@ const css = {
     display: "flex",
     gap: "20px",
     justifyContent: "space-between",
-    mb: "30px",
   },
 };
 
 const ButtonsRight = () => {
-  const [buttonOne, setButtonOne] = useState(false);
-  const [buttonTwo, setButtonTwo] = useState(false);
-  const [buttonThree, setButtonThree] = useState(false);
-  const [buttonFour, setButtonFour] = useState(false);
-  const [buttonFive, setButtonFive] = useState(false);
-  
+  const [open, setOpen] = useState(false);
+  const [openLose, setOpenLose] = useState(false);
+
   return (
     <Box sx={css.buttonContainer}>
-      <Button
-        variant="contained"
-        size="large"
-        disabled={buttonOne}
-        sx={{ width: "200px", height: "80px", fontSize: "30px" }}
+      <Box
+        sx={{
+          borderBottom: "4px solid  #9f2e30",
+          borderRadius: "8px",
+          p: "3px",
+          height: "80px",
+        }}
         onClick={() => {
-          setButtonOne(true);
-          alert("no");
+          setOpenLose(!openLose);
         }}
       >
-        HOLA
-      </Button>
-      <Button
-        variant="contained"
-        size="large"
-        disabled={buttonTwo}
-        sx={{ width: "200px", height: "80px", fontSize: "30px" }}
+        <CustomButton
+          fontSize="20px"
+          colorClaro="#ff3f3f"
+          colorOscuro="#ff0f0f"
+          colorClaroHover="#eb3636"
+          colorOscuroHover="#d90808"
+          borderBottom="#c00000"
+          borderBottomHover="#a70000"
+          width="200px"
+        >
+          HOGAR
+        </CustomButton>
+      </Box>
+      <Box
+        sx={{
+          borderBottom: "4px solid  #9f2e30",
+          borderRadius: "8px",
+          p: "3px",
+          height: "80px",
+        }}
         onClick={() => {
-          setButtonTwo(true);
-          alert("si");
+          setOpen(!open)
         }}
       >
-        HOLA
-      </Button>
-      <Button
-        variant="contained"
-        size="large"
-        disabled={buttonThree}
-        sx={{ width: "200px", height: "80px", fontSize: "30px" }}
+        <CustomButton
+          fontSize="20px"
+          colorClaro="#ff3f3f"
+          colorOscuro="#ff0f0f"
+          colorClaroHover="#eb3636"
+          colorOscuroHover="#d90808"
+          borderBottom="#c00000"
+          borderBottomHover="#a70000"
+          width="200px"
+        >
+          HOGAR
+        </CustomButton>
+      </Box>
+      <Box
+        sx={{
+          borderBottom: "4px solid  #9f2e30",
+          borderRadius: "8px",
+          p: "3px",
+          height: "80px",
+        }}
         onClick={() => {
-          setButtonThree(true);
-          alert("no");
+          setOpenLose(!openLose);
         }}
       >
-        HOLA
-      </Button>
-      <Button
-        variant="contained"
-        size="large"
-        disabled={buttonFour}
-        sx={{ width: "200px", height: "80px", fontSize: "30px" }}
+        <CustomButton
+          fontSize="20px"
+          colorClaro="#ff3f3f"
+          colorOscuro="#ff0f0f"
+          colorClaroHover="#eb3636"
+          colorOscuroHover="#d90808"
+          borderBottom="#c00000"
+          borderBottomHover="#a70000"
+          width="200px"
+        >
+          HOGAR
+        </CustomButton>
+      </Box>
+      <Box
+        sx={{
+          borderBottom: "4px solid  #9f2e30",
+          borderRadius: "8px",
+          p: "3px",
+          height: "80px",
+        }}
         onClick={() => {
-          setButtonFour(true);
-          alert("no");
+          setOpenLose(!openLose);
         }}
       >
-        HOLA
-      </Button>
-      <Button
-        variant="contained"
-        size="large"
-        disabled={buttonFive}
-        sx={{ width: "200px", height: "80px", fontSize: "30px" }}
+        <CustomButton
+          fontSize="20px"
+          colorClaro="#ff3f3f"
+          colorOscuro="#ff0f0f"
+          colorClaroHover="#eb3636"
+          colorOscuroHover="#d90808"
+          borderBottom="#c00000"
+          borderBottomHover="#a70000"
+          width="200px"
+        >
+          HOGAR
+        </CustomButton>
+      </Box>
+      <Box
+        sx={{
+          borderBottom: "4px solid  #9f2e30",
+          borderRadius: "8px",
+          p: "3px",
+          height: "80px",
+        }}
         onClick={() => {
-          setButtonFive(true);
-          alert("no");
+          setOpenLose(!openLose);
         }}
       >
-        HOLA
-      </Button>
+        <CustomButton
+          fontSize="20px"
+          colorClaro="#ff3f3f"
+          colorOscuro="#ff0f0f"
+          colorClaroHover="#eb3636"
+          colorOscuroHover="#d90808"
+          borderBottom="#c00000"
+          borderBottomHover="#a70000"
+          width="200px"
+        >
+          HOGAR
+        </CustomButton>
+      </Box>
+      
+      {openLose ? (
+        <ModalStatus
+          setOpen={setOpenLose}
+          open={openLose}
+          variant="levelTwoError"
+        />
+      ) : open ? (
+        <ModalStatus open={open} variant="levelTwoSuccess"/>
+      ) : <Box/>}
     </Box>
   );
 };

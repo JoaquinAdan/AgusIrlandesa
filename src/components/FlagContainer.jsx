@@ -80,7 +80,7 @@ const FlagContainer = ({
                   cursor: "pointer",
                   transition: ".3s ease",
                   "&:hover": {
-                    transform: "translateY(1px)", // HACER QUE SE PONGA MAS OSCURO DEPENDIENDO EL COLOR
+                    filter: "saturate(80%)"
                   },
                 }}
                 onClick={clearFlag}

@@ -1,7 +1,10 @@
 import React from "react";
 import { Box, styled, Typography, Modal } from "@mui/material";
 import headerFlag from "../assets/flag.svg";
+import hearthLose from "../assets/hearthLose.svg";
 import medalIcon from "../assets/medal.svg";
+import sadEmoji from "../assets/sadEmoji.svg";
+import Trophy from "../assets/Trophy.svg";
 import CustomButton from "../components/CustomButton";
 import headerFlagLights from "../assets/flagLights.svg";
 import { useNavigate } from "react-router-dom";
@@ -65,7 +68,7 @@ const LightsImg = styled("img")({
   animation: "pulsate 2s linear infinite",
 });
 
-export default function ModalSuccess({ open }) {
+export default function ModalStatus({ lifes, setOpen, open, variant }) {
   const navigate = useNavigate();
   return (
     <Box>
@@ -87,7 +90,12 @@ export default function ModalSuccess({ open }) {
                   top: 0,
                 }}
               >
-                WAOUH!!
+                {variant === "levelOneError" &&
+                  (lifes !== 0 ? "OH NO" : "HAS FALLADO")}
+                {variant === "levelOneSuccess" && ":)"}
+                {variant === "levelThreeSuccess" && "WAOUH!!"}
+                {variant === "levelTwoSuccess" && "¡FELICITACIONES!"}
+                {variant === "levelTwoError" && "UPS..."}
               </Typography>
               <Typography
                 sx={{
@@ -97,15 +105,45 @@ export default function ModalSuccess({ open }) {
                   color: "#b20d78",
                 }}
               >
-                LO CONSEGUISTE
+                {variant === "buttonsError" && "SIGUE INTENTANDO Y LO LOGRARÁS"}
+                {variant === "levelOneError" &&
+                  (lifes !== 0 ? "HAS PERDIDO UNA VIDA" : "YA NO QUEDAN VIDAS")}
+                {variant === "levelOneSuccess" && "JAJA XD"}
+                {variant === "levelThreeSuccess" && "LO CONSEGUISTE"}
+                {variant === "levelTwoSuccess" && "SABÍA QUE LO LOGRARÍAS"}
+                {variant === "levelTwoError" && "ESE NO ERA"}
               </Typography>
             </Box>
           </Box>
           <Typography sx={css.titleContainer}>
-            ¡BRAVO! LO HAS LOGRADO
+            {variant === "levelOneError" &&
+              (lifes !== 0
+                ? `TRANQUILA, ¡TODAVÍA TE QUEDAN ${lifes} VIDAS!`
+                : "TE QUEDASTE SIN VIDAS, PERO...")}
+            {variant === "levelOneSuccess" && "GANASTE PORQUE ESTO ERA TROLL"}
+            {variant === "levelThreeSuccess" && "¡BRAVO! LO HAS LOGRADO"}
+            {variant === "levelTwoError" && "SIGUE INTENTANDO Y LO LOGRARÁS"}
+            {variant === "levelTwoSuccess" && "AQUÍ ESTÁ TU TROFEO"}
           </Typography>
-          <Box component="img" src={medalIcon} />
-
+          {variant === "levelOneError" &&
+            (lifes !== 0 ? (
+              <Box component="img" src={hearthLose} />
+            ) : (
+              <Box sx={{ display: "flex" }}>
+                {[1, 2, 3, 4, 5].map(() => (
+                  <Box component="img" src={hearthLose} />
+                ))}
+              </Box>
+            ))}
+          {variant === "levelOneSuccess" && (
+            <Box component="img" src={medalIcon} />
+          )}
+          {variant === "levelTwoSuccess" && (
+            <Box component="img" src={Trophy} />
+          )}
+          {variant === "levelTwoError" && (
+            <Box component="img" src={sadEmoji} />
+          )}
           <Box
             sx={{
               borderBottom: "4px solid  #d9d8d9",
@@ -123,9 +161,21 @@ export default function ModalSuccess({ open }) {
               borderBottom="#4ec307"
               borderBottomHover="#41a306"
               width="230px"
-              onClick={() => navigate("/loading-2")}
+              onClick={() => {
+                variant === "levelOneError" &&
+                  (lifes !== 0 ? setOpen(!open) : navigate("/loading-1"));
+                variant === "levelOneSuccess" && navigate("/loading-2");
+                variant === "levelThreeSuccess" && navigate("/loading-2");
+                variant === "levelTwoSuccess" && navigate("/loading-3");
+                variant === "levelTwoError" && setOpen(false);
+              }}
             >
-              SIGUIENTE NIVEL
+              {variant === "levelOneError" &&
+                (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
+              {variant === "levelOneSuccess" && "SIGUIENTE NIVEL"}
+              {variant === "levelThreeSuccess" && "SIGUIENTE NIVEL"}
+              {variant === "levelTwoSuccess" && "SIGUIENTE NIVEL"}
+              {variant === "levelTwoError" && "PRUEBA OTRA VEZ"}
             </CustomButton>
           </Box>
         </Box>
