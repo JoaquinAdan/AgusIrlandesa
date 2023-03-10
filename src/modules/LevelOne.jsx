@@ -19,18 +19,19 @@ const css = {
   background: {
     background:
       "radial-gradient(73.29% 73.29% at 50% 26.71%, #A659FE 0%, #6F53FD 100%)",
-    height: "100vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
   },
   flagsContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
+    gridTemplateColumns: {xs: "repeat(2, 1fr)", lg: "repeat(4, 1fr)"},
+    justifyContent: "center",
     justifyItems: "center",
     alignItems: "center",
-    gap: "20px",
-    m: "0 150px",
+    gap: {xs:"10px",lg:"20px"},
+    pb: {xs:"20px", lg: "0px"},
+    m: {xs: "0 10px", lg: "0 150px"},
   },
 };
 const countries = [
@@ -158,13 +159,16 @@ export default function LevelOne() {
   console.log(lifesToSimbol);
   return (
     <Box sx={css.background}>
+      <Typography sx={{color: "#fff", fontSize: "26px", textAlign: "center", mb: {xs: "0px",lg:"20px"}}}>SELECCIONA TUS PAÍSES</Typography>
       <Box
         sx={{
-          position: "absolute",
+          position: {xs: "block",lg:"absolute"},
           letterSpacing: "10px",
           top: "10px",
           right: "10px",
           display: "flex",
+          justifyContent: "center",
+          mb: "10px"
         }}
       >
         {lifesToLose.map(() => (
@@ -184,8 +188,8 @@ export default function LevelOne() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "15%",
-          mb: "20px",
+          gap: {xs: "25px",lg:"15%"},
+          mb: {xs: "10px",lg: "20px"},
         }}
       >
         <FlagContainer
@@ -213,7 +217,7 @@ export default function LevelOne() {
           background: "#ffffff5e",
           p: "2.5px 2.6px",
           borderRadius: "8px",
-          mb: "60px",
+          mb: {xs:"10px",lg:"60px"},
         }}
       >
         <Box

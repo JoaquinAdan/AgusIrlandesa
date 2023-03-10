@@ -16,7 +16,7 @@ const css = {
     alignItems: "center",
   },
   container: {
-    width: "50%",
+    width: { xs: "95%", lg: "50%" },
     p: "50px 0",
     background: "#FFFEFF",
     borderBottom: "10px solid  #d1d8ff",
@@ -28,12 +28,12 @@ const css = {
     alignItems: "center",
   },
   invitationText: {
-    fontSize: "32px",
+    fontSize: {xs: "24px",lg: "32px"},
     textAlign: "center",
   },
   titleContainer: {
     background: "#4CDAFE",
-    width: "591px",
+    width: { xs: "95%", lg: "591px" },
     height: "63px",
     display: "flex",
     justifyContent: "center",
@@ -71,11 +71,11 @@ const Invitation = () => {
           <InterrogationIcon src={interrogationBox} />
         </Box>
         <Typography
-          sx={{ ...css.invitationText, color: "#4CDAFE", width: "433px" }}
+          sx={{ ...css.invitationText, color: "#4CDAFE", width: {xs: "auto",md: "433px"} }}
         >
           TE HAN INVITADO A JUGAR A
         </Typography>
-        <Box component="img" src={logo} sx={{mb: "20px"}}/>
+        <Box component="img" src={logo} sx={{ mb: "20px" }} />
         <Box
           sx={{
             borderBottom: "4px solid  #d9d8d9",

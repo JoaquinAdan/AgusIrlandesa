@@ -153,7 +153,10 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 ))}
               </Box>
             ))}
-          {variant === "levelOneSuccess" || variant === "levelThreeSuccess"  && (
+          {variant === "levelOneSuccess" && (
+            <Box component="img" src={medalIcon} />
+          )}
+          {variant === "levelThreeSuccess" && (
             <Box component="img" src={medalIcon} />
           )}
           {variant === "levelTwoSuccess" && (

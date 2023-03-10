@@ -23,16 +23,16 @@ const FlagContainer = ({
     },
     flagContainer: {
       background: "#fff",
-      p: "20px",
+      p: {xs: "10px",lg:"20px"},
       borderRadius: "21px",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      gap: "20px",
+      gap: {xs: "10px",lg:"20px"},
       borderBottom: "5px solid  #D1D8FF",
-      minWidth: "254px",
-      minHeight: "230px",
+      minWidth: {xs: "160px",lg:"254px"},
+      minHeight: {xs: "190px",lg:"230px"},
     },
     title: {
       color: "#fff",
@@ -58,7 +58,8 @@ const FlagContainer = ({
               background: flagColor,
               borderRadius: "25px",
               textAlign: "center",
-              width: "214px",
+              width: {xs:"140px", lg:"214px"},
+              
               position: "relative",
             }}
           >
