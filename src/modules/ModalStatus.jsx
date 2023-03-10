@@ -92,6 +92,8 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
               >
                 {variant === "levelOneError" &&
                   (lifes !== 0 ? "OH NO" : "HAS FALLADO")}
+                {variant === "levelThreeError" &&
+                  (lifes !== 0 ? "OH NO" : "HAS FALLADO")}
                 {variant === "levelOneSuccess" && ":)"}
                 {variant === "levelThreeSuccess" && "WAOUH!!"}
                 {variant === "levelTwoSuccess" && "¡FELICITACIONES!"}
@@ -108,6 +110,8 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 {variant === "buttonsError" && "SIGUE INTENTANDO Y LO LOGRARÁS"}
                 {variant === "levelOneError" &&
                   (lifes !== 0 ? "HAS PERDIDO UNA VIDA" : "YA NO QUEDAN VIDAS")}
+                {variant === "levelThreeError" &&
+                  (lifes !== 0 ? "HAS PERDIDO UNA VIDA" : "YA NO QUEDAN VIDAS")}
                 {variant === "levelOneSuccess" && "JAJA XD"}
                 {variant === "levelThreeSuccess" && "LO CONSEGUISTE"}
                 {variant === "levelTwoSuccess" && "SABÍA QUE LO LOGRARÍAS"}
@@ -117,6 +121,10 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
           </Box>
           <Typography sx={css.titleContainer}>
             {variant === "levelOneError" &&
+              (lifes !== 0
+                ? `TRANQUILA, ¡TODAVÍA TE QUEDAN ${lifes} VIDAS!`
+                : "TE QUEDASTE SIN VIDAS, PERO...")}
+            {variant === "levelThreeError" &&
               (lifes !== 0
                 ? `TRANQUILA, ¡TODAVÍA TE QUEDAN ${lifes} VIDAS!`
                 : "TE QUEDASTE SIN VIDAS, PERO...")}
@@ -135,7 +143,17 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 ))}
               </Box>
             ))}
-          {variant === "levelOneSuccess" && (
+          {variant === "levelThreeError" &&
+            (lifes !== 0 ? (
+              <Box component="img" src={hearthLose} />
+            ) : (
+              <Box sx={{ display: "flex" }}>
+                {[1, 2, 3, 4, 5].map(() => (
+                  <Box component="img" src={hearthLose} />
+                ))}
+              </Box>
+            ))}
+          {variant === "levelOneSuccess" || variant === "levelThreeSuccess"  && (
             <Box component="img" src={medalIcon} />
           )}
           {variant === "levelTwoSuccess" && (
@@ -164,13 +182,17 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
               onClick={() => {
                 variant === "levelOneError" &&
                   (lifes !== 0 ? setOpen(!open) : navigate("/loading-1"));
+                variant === "levelThreeError" &&
+                  (lifes !== 0 ? setOpen(!open) : window.location.reload());
                 variant === "levelOneSuccess" && navigate("/loading-2");
-                variant === "levelThreeSuccess" && navigate("/loading-2");
+                variant === "levelThreeSuccess" && navigate("/loading-4");
                 variant === "levelTwoSuccess" && navigate("/loading-3");
                 variant === "levelTwoError" && setOpen(false);
               }}
             >
               {variant === "levelOneError" &&
+                (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
+              {variant === "levelThreeError" &&
                 (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
               {variant === "levelOneSuccess" && "SIGUIENTE NIVEL"}
               {variant === "levelThreeSuccess" && "SIGUIENTE NIVEL"}

@@ -10,6 +10,8 @@ const LoadingLevelInitial = lazy(() => import('../modules/loadings/LoadingLevelI
 const LoadingOne = lazy(() => import('../modules/loadings/LoadingLevelOne'))
 const LoadingTwo = lazy(() => import('../modules/loadings/LoadingLevelTwo'))
 const LoadingThree = lazy(() => import('../modules/loadings/LoadingLevelThree'))
+const LoadingAward = lazy(() => import('../modules/loadings/LoadingLevelAward'))
+const Award = lazy(() => import('../modules/Award'))
 
 const DefRoutes = () => {
   return (
@@ -20,9 +22,11 @@ const DefRoutes = () => {
         <Route path="/loading-1" element={<LoadingOne />} />
         <Route path="/loading-2" element={<LoadingTwo />} />
         <Route path="/loading-3" element={<LoadingThree />} />
+        <Route path="/loading-4" element={<LoadingAward />} />
         <Route path="/country-fake" element={<LevelOne />} />
         <Route path="/button-level" element={<LevelTwo />} />
         <Route path="/country-real" element={<LevelThree />} />
+        <Route path="/award" element={<Award />} />
       </Routes>
     </>
   );

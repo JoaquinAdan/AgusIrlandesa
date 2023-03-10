@@ -35,12 +35,12 @@ const css = {
 };
 const countries = [
   { code: "ar", country: "Argentina", color: "#5984ac" },
-  { code: "ie", country: "Irlanda", color: "#ff7900" },
   { code: "cl", country: "Chile", color: "#0039a6" },
   { code: "us", country: "Estados Unidos", color: "#bd3d44" },
   { code: "hu", country: "Hungria", color: "#d43516" },
   { code: "br", country: "Brasil", color: "#176b2e" },
   { code: "ch", country: "Suiza", color: "#d52b1e" },
+  { code: "ie", country: "Irlanda", color: "#ff7900" },
   { code: "de", country: "Alemania", color: "#000000" },
 ];
 
@@ -255,10 +255,10 @@ export default function LevelOne() {
           lifes={lifes}
           setOpen={setOpenLose}
           open={openLose}
-          variant="levelOneError"
+          variant="levelThreeError"
         />
       ) : open ? (
-        <ModalStatus open={open} variant="levelOneSuccess"/>
+        <ModalStatus open={open} variant="levelThreeSuccess"/>
       ) : null}
     </Box>
   );
