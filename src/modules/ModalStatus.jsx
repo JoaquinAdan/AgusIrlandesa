@@ -4,6 +4,7 @@ import headerFlag from "../assets/flag.svg";
 import hearthLose from "../assets/hearthLose.svg";
 import medalIcon from "../assets/medal.svg";
 import sadEmoji from "../assets/sadEmoji.svg";
+import logo from "../assets/logo.png";
 import Trophy from "../assets/Trophy.svg";
 import CustomButton from "../components/CustomButton";
 import headerFlagLights from "../assets/flagLights.svg";
@@ -17,7 +18,7 @@ const css = {
     transform: "translate(-50%, -50%)",
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: {xs: "16px 0px",lg: "16px 24px"},
+    p: { xs: "16px 0px", lg: "16px 24px" },
     borderBottom: "10px solid  #d1d8ff",
     borderRadius: "21px",
     display: "flex",
@@ -102,9 +103,10 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 {variant === "levelThreeError" &&
                   (lifes !== 0 ? "OH NO" : "HAS FALLADO")}
                 {variant === "levelOneSuccess" && ":)"}
-                {variant === "levelThreeSuccess" && "WAOUH!!"}
-                {variant === "levelTwoSuccess" && "¡FELICITACIONES!"}
+                {variant === "levelThreeSuccess" && "¡FELICITACIONES!"}
+                {variant === "levelTwoSuccess" && "¡GENIAL!"}
                 {variant === "levelTwoError" && "UPS..."}
+                {variant === "levelAward" && "¡CONGRATULATIONS!"}
               </Typography>
               <Typography
                 sx={{
@@ -123,6 +125,7 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 {variant === "levelThreeSuccess" && "LO CONSEGUISTE"}
                 {variant === "levelTwoSuccess" && "SABÍA QUE LO LOGRARÍAS"}
                 {variant === "levelTwoError" && "ESE NO ERA"}
+                {variant === "levelAward" && "ADEMÁS DE ARGENTINA"}
               </Typography>
             </Box>
           </Box>
@@ -136,9 +139,11 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
                 ? `TRANQUILA, ¡TODAVÍA TE QUEDAN ${lifes} VIDAS!`
                 : "TE QUEDASTE SIN VIDAS, PERO...")}
             {variant === "levelOneSuccess" && "GANASTE PORQUE ESTO ERA TROLL"}
-            {variant === "levelThreeSuccess" && "¡BRAVO! LO HAS LOGRADO"}
+            {variant === "levelThreeSuccess" &&
+              "¡BRAVO! YA PUEDES RECIBIR TU PREMIO"}
             {variant === "levelTwoError" && "SIGUE INTENTANDO Y LO LOGRARÁS"}
             {variant === "levelTwoSuccess" && "AQUÍ ESTÁ TU TROFEO"}
+            {variant === "levelAward" && "YA ERES..."}
           </Typography>
           {variant === "levelOneError" &&
             (lifes !== 0 ? (
@@ -163,6 +168,7 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
           {variant === "levelOneSuccess" && (
             <Box component="img" src={medalIcon} />
           )}
+          {variant === "levelAward" && <Box component="img" src={logo} />}
           {variant === "levelThreeSuccess" && (
             <Box component="img" src={medalIcon} />
           )}
@@ -172,44 +178,48 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
           {variant === "levelTwoError" && (
             <Box component="img" src={sadEmoji} />
           )}
-          <Box
-            sx={{
-              borderBottom: "4px solid  #d9d8d9",
-              borderRadius: "50px",
-              p: "3px",
-              height: "50px",
-            }}
-          >
-            <CustomButton
-              borderRadius="50px"
-              colorClaro="#86ef04"
-              colorOscuro="#67eb00"
-              colorClaroHover="#7bdd03"
-              colorOscuroHover="#57c501"
-              borderBottom="#4ec307"
-              borderBottomHover="#41a306"
-              width="230px"
-              onClick={() => {
-                variant === "levelOneError" &&
-                  (lifes !== 0 ? setOpen(!open) : navigate("/loading-1"));
-                variant === "levelThreeError" &&
-                  (lifes !== 0 ? setOpen(!open) : window.location.reload());
-                variant === "levelOneSuccess" && navigate("/loading-2");
-                variant === "levelThreeSuccess" && navigate("/loading-4");
-                variant === "levelTwoSuccess" && navigate("/loading-3");
-                variant === "levelTwoError" && setOpen(false);
+          {variant !== "levelAward" ? (
+            <Box
+              sx={{
+                borderBottom: "4px solid  #d9d8d9",
+                borderRadius: "50px",
+                p: "3px",
+                height: "50px",
               }}
             >
-              {variant === "levelOneError" &&
-                (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
-              {variant === "levelThreeError" &&
-                (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
-              {variant === "levelOneSuccess" && "SIGUIENTE NIVEL"}
-              {variant === "levelThreeSuccess" && "SIGUIENTE NIVEL"}
-              {variant === "levelTwoSuccess" && "SIGUIENTE NIVEL"}
-              {variant === "levelTwoError" && "PRUEBA OTRA VEZ"}
-            </CustomButton>
-          </Box>
+              <CustomButton
+                borderRadius="50px"
+                colorClaro="#86ef04"
+                colorOscuro="#67eb00"
+                colorClaroHover="#7bdd03"
+                colorOscuroHover="#57c501"
+                borderBottom="#4ec307"
+                borderBottomHover="#41a306"
+                width="230px"
+                onClick={() => {
+                  variant === "levelOneError" &&
+                    (lifes !== 0 ? setOpen(!open) : navigate("/loading-1"));
+                  variant === "levelThreeError" &&
+                    (lifes !== 0 ? setOpen(!open) : window.location.reload());
+                  variant === "levelOneSuccess" && navigate("/loading-2");
+                  variant === "levelThreeSuccess" && navigate("/loading-4");
+                  variant === "levelTwoSuccess" && navigate("/loading-3");
+                  variant === "levelTwoError" && setOpen(false);
+                }}
+              >
+                {variant === "levelOneError" &&
+                  (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
+                {variant === "levelThreeError" &&
+                  (lifes !== 0 ? "PRUEBA OTRA VEZ" : "JUEGA DE NUEVO")}
+                {variant === "levelOneSuccess" && "SIGUIENTE NIVEL"}
+                {variant === "levelThreeSuccess" && "RECIBIR RECOMPENSA"}
+                {variant === "levelTwoSuccess" && "SIGUIENTE NIVEL"}
+                {variant === "levelTwoError" && "PRUEBA OTRA VEZ"}
+              </CustomButton>{" "}
+            </Box>
+          ) : (
+            <Typography sx={{...css.titleContainer, mt: "0px"}}>TE AMAMOS</Typography>
+          )}
         </Box>
       </Modal>
     </Box>

@@ -43,17 +43,17 @@ const LoadingAward = () => {
           sx={{ ...css.textAnimation, letterSpacing: "2px", width: "32px" }}
           component={TypeAnimation}
           sequence={[
-            ".", // Types 'One'
-            250, // Waits 1s
-            "..", // Deletes 'One' and types 'Two'
-            250, // Waits 2s
-            "...", // Types 'Three' without deleting 'Two'
-            250, // Waits 2s
-            "....", // Types 'Three' without deleting 'Two'
-            250, // Waits 2s
-            ".....", // Types 'Three' without deleting 'Two'
+            ".", 
+            250, 
+            "..", 
+            250, 
+            "...",
+            250, 
+            "....",
+            250, 
+            ".....",
             250,
-            "......", // Types 'Three' without deleting 'Two'
+            "......",
             250,
             () => {
               console.log("Done typing!"); // Place optional callbacks anywhere in the array
