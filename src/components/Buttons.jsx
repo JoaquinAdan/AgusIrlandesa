@@ -6,21 +6,22 @@ import ModalStatus from "../modules/ModalStatus";
 const css = {
   container: { margin: "100px 300px" },
   buttonContainer: {
-    display: "flex",
+    display: { xs: "grid", lg: "flex" },
+    gridTemplateColumns: "repeat(2, 1fr)",
     gap: "20px",
     justifyContent: "space-between",
   },
 };
 
-const Buttons = () => {
+const Buttons = ({ setOpen, open }) => {
   const [buttonState, setButtonState] = useState([
     false,
     false,
     false,
     false,
     false,
+    false,
   ]);
-  const [open, setOpen] = useState(false);
   return (
     <Box sx={css.buttonContainer}>
       {buttonState.map((element, i) => (
@@ -40,7 +41,7 @@ const Buttons = () => {
             colorOscuroHover="#d90808"
             borderBottom="#c00000"
             borderBottomHover="#a70000"
-            width="200px"
+            width={{xs: "160px", lg: "200px"}}
             onClick={() => {
               setOpen(!open);
             }}
@@ -49,7 +50,6 @@ const Buttons = () => {
           </CustomButton>
         </Box>
       ))}
-      <ModalStatus open={open} variant="levelTwoError" setOpen={setOpen} />
     </Box>
   );
 };

@@ -25,13 +25,13 @@ const css = {
   },
   flagsContainer: {
     display: "grid",
-    gridTemplateColumns: {xs: "repeat(2, 1fr)", lg: "repeat(4, 1fr)"},
+    gridTemplateColumns: { xs: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" },
     justifyContent: "center",
     justifyItems: "center",
     alignItems: "center",
-    gap: {xs:"10px",lg:"20px"},
-    pb: {xs:"20px", lg: "0px"},
-    m: {xs: "0 10px", lg: "0 150px"},
+    gap: { xs: "10px", lg: "20px" },
+    pb: { xs: "20px", lg: "0px" },
+    m: { xs: "0 10px", lg: "0 150px" },
   },
 };
 const countries = [
@@ -76,7 +76,7 @@ export default function LevelOne() {
     lifes === 3 && setOpenLose(!openLose);
     lifes === 2 && setOpenLose(!openLose);
     lifes === 1 && setOpenLose(!openLose);
-    lifes === 0 && setOpen(true);;
+    lifes === 0 && setOpen(true);
   }, [lifes]);
 
   const handleBandera = (code, name, color) => {
@@ -159,16 +159,25 @@ export default function LevelOne() {
   console.log(lifesToSimbol);
   return (
     <Box sx={css.background}>
-      <Typography sx={{color: "#fff", fontSize: "26px", textAlign: "center", mb: {xs: "0px",lg:"20px"}}}>SELECCIONA TUS PAÍSES</Typography>
+      <Typography
+        sx={{
+          color: "#fff",
+          fontSize: "26px",
+          textAlign: "center",
+          mb: { xs: "0px", lg: "20px" },
+        }}
+      >
+        SELECCIONA TUS PAÍSES
+      </Typography>
       <Box
         sx={{
-          position: {xs: "block",lg:"absolute"},
+          position: { xs: "block", lg: "absolute" },
           letterSpacing: "10px",
           top: "10px",
           right: "10px",
           display: "flex",
           justifyContent: "center",
-          mb: "10px"
+          mb: "10px",
         }}
       >
         {lifesToLose.map(() => (
@@ -188,8 +197,8 @@ export default function LevelOne() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: {xs: "25px",lg:"15%"},
-          mb: {xs: "10px",lg: "20px"},
+          gap: { xs: "25px", lg: "15%" },
+          mb: { xs: "10px", lg: "20px" },
         }}
       >
         <FlagContainer
@@ -217,7 +226,7 @@ export default function LevelOne() {
           background: "#ffffff5e",
           p: "2.5px 2.6px",
           borderRadius: "8px",
-          mb: {xs:"10px",lg:"60px"},
+          mb: { xs: "10px", lg: "60px" },
         }}
       >
         <Box
@@ -262,7 +271,7 @@ export default function LevelOne() {
           variant="levelOneError"
         />
       ) : open ? (
-        <ModalStatus open={open} variant="levelOneSuccess"/>
+        <ModalStatus open={open} variant="levelOneSuccess" />
       ) : null}
     </Box>
   );

@@ -9,5 +9,14 @@
 }
 html {
   background: #6F53FD;
-  user-select: none
+  user-select: none;
+  overflow-y: scroll;
+}
+*::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ff3f3f;
 }

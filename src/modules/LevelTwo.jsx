@@ -1,25 +1,26 @@
 import React, { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Buttons from "../components/Buttons";
 import ButtonsRight from "../components/ButtonsRight";
+import ModalStatus from "./ModalStatus";
 
 const css = {
   background: {
     background:
       "radial-gradient(73.29% 73.29% at 50% 26.71%, #A659FE 0%, #6F53FD 100%)",
-    height: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
   },
   container: {
-    p: "50px 50px",
+    p: {xs:"5px 5px", lg:"50px 50px"},
     background: "#FFFEFF",
     borderBottom: "10px solid  #d1d8ff",
     boxShadow: "0px 4px 0px rgba(0, 0, 0, 0.25)",
     borderRadius: "21px",
     display: "flex",
+    width: { xs: "95%", lg: "auto" },
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -35,21 +36,30 @@ const LevelTwo = () => {
     false,
     false,
   ]);
-  const disableSelect = (i, bool) => {
-    const aux = [...buttonState];
-    aux[i] = bool;
-    setButtonState(aux);
-  };
+  const [open, setOpen] = useState(false);
+  const [openLose, setOpenLose] = useState(false);
+  
   return (
     <Box sx={css.background}>
+      <Typography sx={{color: "#fff", fontSize: "26px", textAlign: "center", mb: {xs: "10px",lg:"20px"}}}>SELECCIONE EL BOTÓN QUE TE LLEVA A TU CASA</Typography>
       <Box sx={css.container}>
-        <Buttons />
-        <Buttons />
-        <Buttons />
-        <ButtonsRight />
-        <Buttons />
-        <Buttons />
+        <Buttons open={openLose} setOpen={setOpenLose} />
+        <Buttons open={openLose} setOpen={setOpenLose} />
+        <Buttons open={openLose} setOpen={setOpenLose} />
+        <ButtonsRight open={open} setOpen={setOpen} openLose={openLose} setOpenLose={setOpenLose} />
+        <Buttons open={openLose} setOpen={setOpenLose} />
+        <Buttons open={openLose} setOpen={setOpenLose} />
       </Box>
+            
+      {openLose ? (
+        <ModalStatus
+          setOpen={setOpenLose}
+          open={openLose}
+          variant="levelTwoError"
+        />
+      ) : open ? (
+        <ModalStatus open={open} variant="levelTwoSuccess"/>
+      ) : <Box/>}
     </Box>
   );
 };

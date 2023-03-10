@@ -19,7 +19,7 @@ const FlagContainer = ({
       height: variant === "seleccionado" ? "113px" : "69px",
       borderRadius: "15%",
       objectFit: "cover",
-      mb: variant === "seleccionado" && "25px",
+      mb: variant === "seleccionado" && "15px",
     },
     flagContainer: {
       background: "#fff",
