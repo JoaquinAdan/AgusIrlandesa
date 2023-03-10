@@ -35,7 +35,7 @@ const Award = () => {
   const FirstImage = styled("img")({
     "@keyframes appearfi": {
       "0%": { opacity: 1 },
-      "1%": { opacity: 0 },
+      "0.1%": { opacity: 0 },
       "100%": { opacity: 1 },
     },
     position: "absolute",
@@ -52,7 +52,7 @@ const Award = () => {
   const SecondImage = styled("img")({
     "@keyframes appeartw": {
       "0%": { opacity: 1 },
-      "1%": { opacity: 0 },
+      "0.1%": { opacity: 0 },
       "100%": { opacity: 1 },
     },
     position: "absolute",
@@ -69,7 +69,7 @@ const Award = () => {
   const ThirdImage = styled("img")({
     "@keyframes appeart": {
       "0%": { opacity: 1 },
-      "1%": { opacity: 0 },
+      "0.1%": { opacity: 0 },
       "100%": { opacity: 1 },
     },
     position: "absolute",
@@ -86,7 +86,7 @@ const Award = () => {
   const FourthImage = styled("img")({
     "@keyframes appearfo": {
       "0%": { opacity: 1 },
-      "1%": { opacity: 0 },
+      "0.1%": { opacity: 0 },
       "100%": { opacity: 1 },
     },
     position: "absolute",
