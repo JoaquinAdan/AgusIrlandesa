@@ -81,7 +81,7 @@ const FlagContainer = ({
                   cursor: "pointer",
                   transition: ".3s ease",
                   "&:hover": {
-                    filter: "saturate(80%)"
+                    boxShadow: "#00000050 3px 3px 6px 0px inset, #22222250 -3px -3px 6px 1px inset"
                   },
                 }}
                 onClick={clearFlag}

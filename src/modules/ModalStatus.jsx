@@ -17,7 +17,7 @@ const css = {
     transform: "translate(-50%, -50%)",
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: "16px 24px",
+    p: {xs: "16px 0px",lg: "16px 24px"},
     borderBottom: "10px solid  #d1d8ff",
     borderRadius: "21px",
     display: "flex",
@@ -79,7 +79,14 @@ export default function ModalStatus({ lifes, setOpen, open, variant }) {
       >
         <Box sx={css.modal}>
           <Box sx={css.bandera}>
-            <Box component="img" src={headerFlag} sx={{ zIndex: "4" }} />
+            <Box
+              component="img"
+              src={headerFlag}
+              sx={{
+                zIndex: "4",
+                transform: { xs: "scale(.9)", lg: "scale(1)" },
+              }}
+            />
             <LightsImg src={headerFlagLights} />
             <Box>
               <Typography
